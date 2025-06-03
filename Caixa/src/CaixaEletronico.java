@@ -2,17 +2,14 @@ import java.util.Scanner;
 
 public class CaixaEletronico {
 
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        //Passo 1 = Receber o valor do saque
+    public static int obterValorSaque(Scanner scanner){
         System.out.println("Digite o valor do saque");
         int valor = scanner.nextInt();
+        return valor;
 
+    }
 
-        //Passo 2 = Notas Disponiveis
-        int[] notas = {100, 50, 20, 10, 5, 2, 1,};
+    public static int[] calcularNotas(int valor, int[] notas){
         int[] quantidadeNotas = new int[notas.length];
 
         //Passo 3 = Calcular a quantidade de cada nota
@@ -22,7 +19,11 @@ public class CaixaEletronico {
                 valor %= notas[i];
             }
         }
+        return quantidadeNotas;
 
+    }
+
+    public static void exibirNotas(int[] notas, int[] quantidadeNotas){
         //Passo 4 = Exibir o resultado
         System.out.println("Notas Fornecidas: ");
         for (int i = 0; i < notas.length; i++){
@@ -30,6 +31,22 @@ public class CaixaEletronico {
                 System.out.println(quantidadeNotas[i] + " notas(s) de " + notas[i]);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //Passo 1 = Receber o valor do saque
+        int valor = obterValorSaque(scanner);
+
+
+        //Passo 2 = Notas Disponiveis
+        int[] notas = {100, 50, 20, 10, 5, 2, 1,};
+        int[] quantidadeNotas = calcularNotas(valor, notas);
+        exibirNotas(notas, quantidadeNotas);
+
+
+
 
         scanner.close();
 
